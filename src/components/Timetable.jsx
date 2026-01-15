@@ -3,7 +3,7 @@ import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 
 const classes = ["YEAR 1","YEAR 2","YEAR 3","YEAR 4S","YEAR 4Z", "Year 5Q", "Year 5T", "Year 6P", "Year 6T", "year 7", "year 8", "year 9", "year 10", "year 11"];
-const subjects = ["Math","English","Science", "Biology", "Physics", "History","Geography","Art","PE", "IRE/SAT/SOC", "B/S"];
+const subjects = ["Math","English","Science", "Biology", "Physics", "History","Geography","Art","PE", "IRE/SAT/SOC", "B/S", "B/S/Soc"];
 const teachers = ["Ms. Cathrine","Ms. Divina","Ms. Mourine","Mr. Musin","Ms. Mwanamisi", "Ust. Salim", "Ust. Husna", "Ust. Summayah", "Ust. Ruqayah", "Ust. Ali Noor", "Ust. Fatma Wairimu", "Ms. Ether Munyoki", "Mr. Salim", "Mr. Chimera", "Mr. Yahya", "Mr. Dinar", "Ms Verronicah", "Mr. Dilton", "Mr. Samson", "Ms. Esther Makona", "Mr. Nuria", "Ust. Salim", "Ms. Josphine", "Ust. Jamal", "Ust. Jamal", "Ust. Musa", "Ust. Abdulhamid", "Ust. Ahmed", "Ust. Abdulhaman", "Ust. Abubakar", "Ms. Zainab", "Ms. Fatma H", "Ms. Fatma"];
 
 export default function Timetable() {
