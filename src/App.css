@@ -1,8 +1,7 @@
-/* App.css */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f0f8ff; /* light blue background */
+  background-color: #f0f8ff;
 }
 
 h2 {
@@ -13,14 +12,14 @@ h2 {
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #ffffff; /* white table background */
+  background-color: #ffffff;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 th {
-  background-color: #4CAF50; /* header green */
+  background-color: #4CAF50;
   color: white;
   padding: 8px;
   text-align: center;
@@ -29,9 +28,9 @@ th {
 td, th {
   text-align: center;
   padding: 8px;
-  font-size: 16px;        /* bigger text */
-  font-weight: bold;      /* make it bold */
-  color: #222;            /* darker for better visibility */
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
 }
 
 input, select {
