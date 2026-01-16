@@ -2,12 +2,31 @@ import React, { useState } from "react";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 
-const classes = ["YEAR 1","YEAR 2","YEAR 3","YEAR 4S","YEAR 4Z", "Year 5Q", "Year 5T", "Year 6P", "Year 6T", "year 7", "year 8", "year 9", "year 10", "year 11"];
-const subjects = ["Math", "English","Science", "Biology", "Chemistry", "Physics", "History", "Geography", "Character", "FIQH", "Art", "PE", "Seerah", "Tawheed", "IRE/SAT/SOC", "B/S", "B/S/Soc", "CHEM/GEO/LIT", "Tafsr", "Arabic", "Hadith", "Islamiat", "Assembly", "Clubs", "Qu'ran", "Soclology", "Litreture", "ADAAB", "KISW", "ICT", "ENG(READ)", "SKILLS", "PRACTICALS"];
-const teachers = ["Ms. Cathrine","Ms. Divina","Ms. Mourine","Mr. Musin","Ms. Mwanamisi", "Ust. Salim", "Ust. Husna", "Ust. Summayah", "Ust. Ruqayah", "Ust. Ali Noor", "Ust. Fatma Wairimu", "Ms. Ether Munyoki", "Mr. Salim", "Mr. Chimera", "Mr. Yahya", "Mr. Dinar", "Ms Verronicah", "Mr. Dilton", "Mr. Samson", "Ms. Esther Makona", "Mr. Nuria", "Ust. Salim", "Ms. Josphine", "Ust. Jamal", "Ust. Jamal", "Ust. Musa", "Ust. Abdulhamid", "Ust. Ahmed", "Ust. Abdulhaman", "Ust. Abubakar", "Ms. Zainab", "Ms. Fatma H", "Ms. Fatma" ,"Mr. Edgar", "Mr. Ainein", "Mr. Omar", "Mr. Brian"];
+const classes = [
+  "YEAR 1","YEAR 2","YEAR 3","YEAR 4S","YEAR 4Z", "Year 5Q", "Year 5T",
+  "Year 6P", "Year 6T", "year 7", "year 8", "year 9", "year 10", "year 11"
+];
+
+const subjects = [
+  "Math", "English","Science", "Biology", "Chemistry", "Physics", "History", 
+  "Geography", "Character", "FIQH", "Art", "PE", "Seerah", "Tawheed", 
+  "IRE/SAT/SOC", "B/S", "B/S/Soc", "CHEM/GEO/LIT", "Tafsr", "Arabic", 
+  "Hadith", "Islamiat", "Assembly", "Clubs", "Qu'ran", "Soclology", 
+  "Litreture", "ADAAB", "KISW", "ICT", "ENG(READ)", "SKILLS", "PRACTICALS"
+];
+
+const teachers = [
+  "Ms. Cathrine","Ms. Divina","Ms. Mourine","Mr. Musin","Ms. Mwanamisi", 
+  "Ust. Salim", "Ust. Husna", "Ust. Summayah", "Ust. Ruqayah", "Ust. Ali Noor", 
+  "Ust. Fatma Wairimu", "Ms. Ether Munyoki", "Mr. Salim", "Mr. Chimera", 
+  "Mr. Yahya", "Mr. Dinar", "Ms Verronicah", "Mr. Dilton", "Mr. Samson", 
+  "Ms. Esther Makona", "Mr. Nuria", "Ust. Salim", "Ms. Josphine", "Ust. Jamal", 
+  "Ust. Jamal", "Ust. Musa", "Ust. Abdulhamid", "Ust. Ahmed", "Ust. Abdulhaman", 
+  "Ust. Abubakar", "Ms. Zainab", "Ms. Fatma H", "Ms. Fatma" ,"Mr. Edgar", 
+  "Mr. Ainein", "Mr. Omar", "Mr. Brian"
+];
 
 export default function Timetable() {
-
   const [timetable, setTimetable] = useState(
     Array.from({ length: 11 }, (_, i) => {
       const row = { period: i + 1, time: "" };
@@ -36,7 +55,6 @@ export default function Timetable() {
 
   const exportExcel = () => {
     const rows = [];
-
     timetable.forEach(row => {
       classes.forEach(cls => {
         rows.push({
@@ -60,8 +78,28 @@ export default function Timetable() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>School Time-table</h2>
-      <button onClick={exportExcel} style={{ marginBottom: "20px", padding: "10px" }}>
+      {/* Header: Logo + Title */}
+      <div 
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "15px",
+          marginBottom: "20px"
+        }}
+      >
+        <img
+          src="/logo.png" // Use /logo.png if in public, or import if in src/assets
+          alt="School Logo"
+          style={{ width: "80px", height: "auto" }}
+        />
+        <h2 style={{ margin: 0 }}>School Time-table</h2>
+      </div>
+
+      <button
+        onClick={exportExcel}
+        style={{ marginBottom: "20px", padding: "10px" }}
+      >
         Download Excel
       </button>
 
