@@ -78,7 +78,7 @@ export default function Timetable() {
 
   return (
     <div style={{ padding: "20px" }}>
-      {/* Header: Logo + Title */}
+      
       <div 
         style={{
           display: "flex",
@@ -89,7 +89,7 @@ export default function Timetable() {
         }}
       >
         <img
-          src="/logo.png" // Use /logo.png if in public, or import if in src/assets
+          src="/logo.png" 
           alt="School Logo"
           style={{ width: "80px", height: "auto" }}
         />
