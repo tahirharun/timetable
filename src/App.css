@@ -11,6 +11,8 @@ h2 {
 }
 
 table {
+  width: 100%;
+  border-collapse: collapse;
   background-color: #ffffff; /* white table background */
   border-radius: 8px;
   overflow: hidden;
@@ -20,14 +22,21 @@ table {
 th {
   background-color: #4CAF50; /* header green */
   color: white;
+  padding: 8px;
+  text-align: center;
 }
 
 td, th {
   text-align: center;
+  padding: 8px;
+  font-size: 16px;        /* bigger text */
+  font-weight: bold;      /* make it bold */
+  color: #222;            /* darker for better visibility */
 }
 
 input, select {
   padding: 4px;
   width: 100%;
   box-sizing: border-box;
+  font-size: 14px;
 }
