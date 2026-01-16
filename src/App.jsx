@@ -1,5 +1,7 @@
 import React from "react";
 import Timetable from "./components/Timetable";
+import './App.css';
+
 
 function App() {
   return (
