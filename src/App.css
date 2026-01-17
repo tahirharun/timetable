@@ -1,18 +1,18 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f0f8ff;
+  background-color: #f0f8ff; /* Change this to any color you like */
+  color: #333;
 }
 
-h2 {
+h2, h3 {
   text-align: center;
-  color: #333;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #ffffff;
+  background-color: #ffffff; /* table itself */
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -28,9 +28,7 @@ th {
 td, th {
   text-align: center;
   padding: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #222;
+  font-size: 14px;
 }
 
 input, select {
@@ -38,4 +36,11 @@ input, select {
   width: 100%;
   box-sizing: border-box;
   font-size: 14px;
+}
+
+/* Make the main container take full height */
+#root, .App {
+  min-height: 100vh;
+  background-color: #f0f8ff; /* same as body */
+  padding: 20px;
 }

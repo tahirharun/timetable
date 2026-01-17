@@ -26,21 +26,27 @@ const teachers = [
   "Mr. Ainein", "Mr. Omar", "Mr. Brian"
 ];
 
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
 export default function Timetable() {
+  // timetable: periods -> days -> classes
   const [timetable, setTimetable] = useState(
-    Array.from({ length: 11 }, (_, i) => {
-      const row = { period: i + 1, time: "" };
-      classes.forEach(cls => {
-        row[cls] = { subject: subjects[0], teacher: teachers[0] };
+    Array.from({ length: 11 }, (_, period) => {
+      const row = { period: period + 1, time: "" };
+      days.forEach(day => {
+        row[day] = {};
+        classes.forEach(cls => {
+          row[day][cls] = { subject: subjects[0], teacher: teachers[0] };
+        });
       });
       return row;
     })
   );
 
-  const handleChange = (periodIndex, cls, field, value) => {
+  const handleChange = (periodIndex, day, cls, field, value) => {
     setTimetable(prev => {
       const updated = [...prev];
-      updated[periodIndex][cls][field] = value;
+      updated[periodIndex][day][cls][field] = value;
       return updated;
     });
   };
@@ -56,13 +62,16 @@ export default function Timetable() {
   const exportExcel = () => {
     const rows = [];
     timetable.forEach(row => {
-      classes.forEach(cls => {
-        rows.push({
-          Class: cls,
-          Period: row.period,
-          Time: row.time,
-          Subject: row[cls].subject,
-          Teacher: row[cls].teacher,
+      days.forEach(day => {
+        classes.forEach(cls => {
+          rows.push({
+            Day: day,
+            Class: cls,
+            Period: row.period,
+            Time: row.time,
+            Subject: row[day][cls].subject,
+            Teacher: row[day][cls].teacher,
+          });
         });
       });
     });
@@ -78,38 +87,29 @@ export default function Timetable() {
 
   return (
     <div style={{ padding: "20px" }}>
-      
-      <div 
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "15px",
-          marginBottom: "20px"
-        }}
-      >
-        <img
-          src="/logo.png" 
-          alt="School Logo"
-          style={{ width: "80px", height: "auto" }}
-        />
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "15px", marginBottom: "20px" }}>
+        <img src="/logo.png" alt="School Logo" style={{ width: "80px", height: "auto" }} />
         <h2 style={{ margin: 0 }}>School Time-table</h2>
       </div>
 
-      <button
-        onClick={exportExcel}
-        style={{ marginBottom: "20px", padding: "10px" }}
-      >
+      <button onClick={exportExcel} style={{ marginBottom: "20px", padding: "10px" }}>
         Download Excel
       </button>
 
       <table style={{ borderCollapse: "collapse", width: "100%" }}>
         <thead>
           <tr>
-            <th style={{ border: "1px solid #333", padding: "8px" }}>Period</th>
-            <th style={{ border: "1px solid #333", padding: "8px" }}>Time</th>
-            {classes.map(cls => (
-              <th key={cls} style={{ border: "1px solid #333", padding: "8px" }}>{cls}</th>
+            <th rowSpan={2} style={{ border: "1px solid #333", padding: "8px" }}>Period</th>
+            <th rowSpan={2} style={{ border: "1px solid #333", padding: "8px" }}>Time</th>
+            {days.map(day => (
+              <th key={day} colSpan={classes.length} style={{ border: "1px solid #333", padding: "8px" }}>{day}</th>
+            ))}
+          </tr>
+          <tr>
+            {days.map(day => (
+              classes.map(cls => (
+                <th key={day + cls} style={{ border: "1px solid #333", padding: "8px" }}>{cls}</th>
+              ))
             ))}
           </tr>
         </thead>
@@ -124,22 +124,24 @@ export default function Timetable() {
                   onChange={(e) => handleTimeChange(periodIndex, e.target.value)}
                 />
               </td>
-              {classes.map(cls => (
-                <td key={cls} style={{ border: "1px solid #333", padding: "8px" }}>
-                  <select
-                    value={row[cls].subject}
-                    onChange={(e) => handleChange(periodIndex, cls, "subject", e.target.value)}
-                    style={{ marginBottom: "4px" }}
-                  >
-                    {subjects.map(s => <option key={s} value={s}>{s}</option>)}
-                  </select>
-                  <select
-                    value={row[cls].teacher}
-                    onChange={(e) => handleChange(periodIndex, cls, "teacher", e.target.value)}
-                  >
-                    {teachers.map(t => <option key={t} value={t}>{t}</option>)}
-                  </select>
-                </td>
+              {days.map(day => (
+                classes.map(cls => (
+                  <td key={day + cls + periodIndex} style={{ border: "1px solid #333", padding: "4px" }}>
+                    <select
+                      value={row[day][cls].subject}
+                      onChange={(e) => handleChange(periodIndex, day, cls, "subject", e.target.value)}
+                      style={{ marginBottom: "4px" }}
+                    >
+                      {subjects.map(s => <option key={s} value={s}>{s}</option>)}
+                    </select>
+                    <select
+                      value={row[day][cls].teacher}
+                      onChange={(e) => handleChange(periodIndex, day, cls, "teacher", e.target.value)}
+                    >
+                      {teachers.map(t => <option key={t} value={t}>{t}</option>)}
+                    </select>
+                  </td>
+                ))
               ))}
             </tr>
           ))}
