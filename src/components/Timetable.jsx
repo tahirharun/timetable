@@ -28,8 +28,20 @@ const teachers = [
 
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
+// Optional: color coding for subjects
+const subjectColors = {
+  Math: "#FFD700",
+  English: "#ADFF2F",
+  Science: "#87CEFA",
+  Physics: "#FFB6C1",
+  History: "#FFA07A",
+  Chemistry: "#DDA0DD",
+  Biology: "#98FB98",
+  PE: "#F08080",
+  // add more as needed
+};
+
 export default function Timetable() {
-  // timetable: periods -> days -> classes
   const [timetable, setTimetable] = useState(
     Array.from({ length: 11 }, (_, period) => {
       const row = { period: period + 1, time: "" };
@@ -96,57 +108,68 @@ export default function Timetable() {
         Download Excel
       </button>
 
-      <table style={{ borderCollapse: "collapse", width: "100%" }}>
-        <thead>
-          <tr>
-            <th rowSpan={2} style={{ border: "1px solid #333", padding: "8px" }}>Period</th>
-            <th rowSpan={2} style={{ border: "1px solid #333", padding: "8px" }}>Time</th>
-            {days.map(day => (
-              <th key={day} colSpan={classes.length} style={{ border: "1px solid #333", padding: "8px" }}>{day}</th>
-            ))}
-          </tr>
-          <tr>
-            {days.map(day => (
-              classes.map(cls => (
-                <th key={day + cls} style={{ border: "1px solid #333", padding: "8px" }}>{cls}</th>
-              ))
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {timetable.map((row, periodIndex) => (
-            <tr key={periodIndex}>
-              <td style={{ border: "1px solid #333", padding: "8px" }}>{row.period}</td>
-              <td style={{ border: "1px solid #333", padding: "8px" }}>
-                <input
-                  type="time"
-                  value={row.time}
-                  onChange={(e) => handleTimeChange(periodIndex, e.target.value)}
-                />
-              </td>
+      {/* Scrollable table container */}
+      <div style={{ overflowX: "auto", maxWidth: "100%" }}>
+        <table style={{ borderCollapse: "collapse", width: "max-content" }}>
+          <thead>
+            <tr>
+              <th rowSpan={2} style={{ border: "1px solid #333", padding: "8px" }}>Period</th>
+              <th rowSpan={2} style={{ border: "1px solid #333", padding: "8px" }}>Time</th>
+              {days.map(day => (
+                <th key={day} colSpan={classes.length} style={{ border: "1px solid #333", padding: "8px" }}>{day}</th>
+              ))}
+            </tr>
+            <tr>
               {days.map(day => (
                 classes.map(cls => (
-                  <td key={day + cls + periodIndex} style={{ border: "1px solid #333", padding: "4px" }}>
-                    <select
-                      value={row[day][cls].subject}
-                      onChange={(e) => handleChange(periodIndex, day, cls, "subject", e.target.value)}
-                      style={{ marginBottom: "4px" }}
-                    >
-                      {subjects.map(s => <option key={s} value={s}>{s}</option>)}
-                    </select>
-                    <select
-                      value={row[day][cls].teacher}
-                      onChange={(e) => handleChange(periodIndex, day, cls, "teacher", e.target.value)}
-                    >
-                      {teachers.map(t => <option key={t} value={t}>{t}</option>)}
-                    </select>
-                  </td>
+                  <th key={day + cls} style={{ border: "1px solid #333", padding: "8px" }}>{cls}</th>
                 ))
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {timetable.map((row, periodIndex) => (
+              <tr key={periodIndex}>
+                <td style={{ border: "1px solid #333", padding: "8px" }}>{row.period}</td>
+                <td style={{ border: "1px solid #333", padding: "8px" }}>
+                  <input
+                    type="time"
+                    value={row.time}
+                    onChange={(e) => handleTimeChange(periodIndex, e.target.value)}
+                  />
+                </td>
+                {days.map(day => (
+                  classes.map(cls => (
+                    <td key={day + cls + periodIndex} style={{
+                      border: "1px solid #333",
+                      padding: "4px",
+                      minWidth: "140px", // make cells longer
+                      backgroundColor: subjectColors[row[day][cls].subject] || "#fff"
+                    }}>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "2px", minHeight: "55px" }}>
+                        <select
+                          value={row[day][cls].subject}
+                          onChange={(e) => handleChange(periodIndex, day, cls, "subject", e.target.value)}
+                          style={{ fontSize: "13px", width: "100%" }} // stretches full cell
+                        >
+                          {subjects.map(s => <option key={s} value={s}>{s}</option>)}
+                        </select>
+                        <select
+                          value={row[day][cls].teacher}
+                          onChange={(e) => handleChange(periodIndex, day, cls, "teacher", e.target.value)}
+                          style={{ fontSize: "13px", width: "100%" }} // stretches full cell
+                        >
+                          {teachers.map(t => <option key={t} value={t}>{t}</option>)}
+                        </select>
+                      </div>
+                    </td>
+                  ))
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
