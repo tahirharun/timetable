@@ -1,16 +1,13 @@
-// Timetable.jsx
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { Document, Packer, Paragraph, Table, TableCell, TableRow, WidthType } from "docx";
 
-// Classes
 const classes = [
   "YEAR 1","YEAR 2","YEAR 3","YEAR 4S","YEAR 4Z", "Year 5Q", "Year 5T",
   "Year 6P", "Year 6T", "year 7", "year 8", "year 9", "year 10", "year 11"
 ];
 
-// Subjects
 const subjects = [
   "Math", "English","Science", "Biology", "Chemistry", "Physics", "History", 
   "Geography", "Character", "FIQH", "Art", "PE", "Seerah", "Tawheed", 
@@ -19,7 +16,6 @@ const subjects = [
   "Litreture", "ADAAB", "KISW", "ICT", "ENG(READ)", "SKILLS", "PRACTICALS"
 ];
 
-// Teachers
 const teachers = [
   "Ms. Cathrine","Ms. Divina","Ms. Mourine","Mr. Musin","Ms. Mwanamisi", 
   "Ust. Salim", "Ust. Husna", "Ust. Summayah", "Ust. Ruqayah", "Ust. Ali Noor", 
@@ -31,14 +27,11 @@ const teachers = [
   "Mr. Omar", "Mr. Brian"
 ];
 
-// Teacher codes
 const teacherCodes = {};
 teachers.forEach((t, i) => teacherCodes[t] = String(i + 1).padStart(3, "0"));
 
-// Days
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-// Subject Colors
 const subjectColors = {
   Math: "#00FF00", English: "#800000", Science: "#FF0000", Biology: "#98FB98", 
   Chemistry: "#DDA0DD", Physics: "#FFB6C1", History: "#FFA07A", Geography: "#87CEEB", 
@@ -50,7 +43,6 @@ const subjectColors = {
   ICT: "#E6E6FA", "ENG(READ)": "#F5F5DC", SKILLS: "#FFF0F5", PRACTICALS: "#F5FFFA"
 };
 
-// Special periods
 const specialPeriods = {
   5: { label: "Break", color: "#FFD700" },
   8: { label: "Lunch", color: "#FFA500" }
@@ -70,7 +62,6 @@ export default function Timetable() {
     })
   );
 
-  // Handle changes
   const handleChange = (periodIndex, day, cls, field, value) => {
     setTimetable(prev => {
       const updated = [...prev];
@@ -87,7 +78,6 @@ export default function Timetable() {
     });
   };
 
-  // ================= Excel Export (Filled timetable) =================
   const exportExcel = () => {
     const rows = [];
     timetable.forEach(row => {
@@ -128,7 +118,6 @@ export default function Timetable() {
     saveAs(data, "timetable.xlsx");
   };
 
-  // ================= Excel Export (Blank timetable) =================
   const exportBlankExcel = () => {
     const rows = [];
     timetable.forEach(row => {
@@ -167,11 +156,9 @@ export default function Timetable() {
     saveAs(data, "blank_timetable.xlsx");
   };
 
-  // ================= Word Export (Blank timetable, printable) =================
   const exportWordBlank = async () => {
     const tableRows = [];
 
-    // Header row: Period, Time, all classes
     const headerCells = [
       new TableCell({ children: [new Paragraph({ text: "Period", bold: true })], width: { size: 1000, type: WidthType.DXA } }),
       new TableCell({ children: [new Paragraph({ text: "Time", bold: true })], width: { size: 1500, type: WidthType.DXA } }),
@@ -179,7 +166,6 @@ export default function Timetable() {
     ];
     tableRows.push(new TableRow({ children: headerCells }));
 
-    // Period rows
     timetable.forEach(row => {
       const periodNumber = row.period;
       const special = specialPeriods[periodNumber];
@@ -247,7 +233,7 @@ export default function Timetable() {
       </div>
 
       <div style={{ overflowX: "auto", maxWidth: "100%" }}>
-        {/* Your existing timetable JSX remains unchanged */}
+
         <table style={{ borderCollapse: "collapse", width: "max-content" }}>
           <thead>
             <tr>
