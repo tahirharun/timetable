@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f0f8ff; /* Change this to any color you like */
+  background-color: #f0f8ff; 
   color: #333;
 }
 
@@ -12,7 +12,7 @@ h2, h3 {
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #ffffff; /* table itself */
+  background-color: #ffffff; 
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -38,9 +38,8 @@ input, select {
   font-size: 14px;
 }
 
-/* Make the main container take full height */
 #root, .App {
   min-height: 100vh;
-  background-color: #f0f8ff; /* same as body */
+  background-color: #f0f8ff; 
   padding: 20px;
 }
