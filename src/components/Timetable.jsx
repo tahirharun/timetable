@@ -109,7 +109,7 @@ export default function Timetable() {
         <button onClick={exportExcel} style={{ padding: "10px 15px" }}>Download Excel</button>
         <button onClick={exportBlankExcel} style={{ padding: "10px 15px" }}>Download Blank Timetable (Excel)</button>
         <button onClick={exportWordBlank} style={{ padding: "10px 15px" }}>Download Blank Timetable (Word)</button>
-        <button onClick={() => setView("duplicate")} style={{ padding: "10px 15px" }}>Open Duplicate Timetable</button>
+        <button onClick={() => setView("duplicate")} style={{ padding: "10px 15px" }}>Open Second Timetable</button>
       </div>
 
       {/* Timetable Table */}
