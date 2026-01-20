@@ -1,3 +1,6 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -42,4 +45,49 @@ input, select {
   min-height: 100vh;
   background-color: #f0f8ff; 
   padding: 20px;
+}
+
+/* =========================
+   BUTTON STYLES
+========================= */
+
+/* General button style */
+button {
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #4CAF50, #45a049); /* green gradient */
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* Hover effect */
+button:hover {
+  background: linear-gradient(135deg, #45a049, #4CAF50);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0,0,0,0.25);
+}
+
+/* Active (click) effect */
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* Secondary buttons (blue gradient) */
+button.secondary {
+  background: linear-gradient(135deg, #2196F3, #1E88E5);
+}
+
+button.secondary:hover {
+  background: linear-gradient(135deg, #1E88E5, #2196F3);
+}
+
+/* Optional glow effect on hover */
+button.glow:hover {
+  box-shadow: 0 0 12px rgba(255,255,255,0.6), 0 6px 10px rgba(0,0,0,0.25);
 }
