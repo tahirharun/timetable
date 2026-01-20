@@ -114,7 +114,7 @@ export default function DuplicateTimetable({ timetable, onBack }) {
       <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "20px", alignItems: "flex-start" }}>
         <button onClick={exportExcel} style={{ padding: "10px 15px" }}>Download Excel</button>
         <button onClick={exportWord} style={{ padding: "10px 15px" }}>Download Word</button>
-        <button onClick={onBack} style={{ padding: "10px 15px" }}>Back to whole School Timetable</button>
+        <button onClick={onBack} style={{ padding: "10px 15px" }}>Back to School Time-table</button>
       </div>
 
       {/* Interactive Table */}
