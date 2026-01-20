@@ -4,7 +4,6 @@ import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { Document, Packer, Paragraph, Table, TableCell, TableRow, WidthType } from "docx";
 
-/* ===== CONSTANTS ===== */
 const classes = [
   "YEAR 1","YEAR 2","YEAR 3","YEAR 4S","YEAR 4Z",
   "Year 5Q","Year 5T","Year 6P","Year 6T",
@@ -51,9 +50,8 @@ const specialPeriods = {
   8: { label: "Lunch", color: "#FFA500" }
 };
 
-/* ===== COMPONENT ===== */
 export default function Timetable() {
-  const [view, setView] = useState("original"); // original | duplicate
+  const [view, setView] = useState("original");
 
   const [timetable, setTimetable] = useState(
     Array.from({ length: 11 }, (_, period) => {
@@ -68,7 +66,6 @@ export default function Timetable() {
     })
   );
 
-  /* ===== HANDLERS ===== */
   const handleChange = (periodIndex, day, cls, field, value) => {
     setTimetable(prev => {
       const updated = [...prev];
@@ -85,17 +82,14 @@ export default function Timetable() {
     });
   };
 
-  /* ===== EXPORT FUNCTIONS ===== */
-  const exportExcel = () => { /* same as before */ };
-  const exportBlankExcel = () => { /* same as before */ };
-  const exportWordBlank = async () => { /* same as before */ };
+  const exportExcel = () => {};
+  const exportBlankExcel = () => {};
+  const exportWordBlank = async () => {};
 
-  /* ===== DUPLICATE VIEW ===== */
   if(view === "duplicate"){
     return <DuplicateTimetable timetable={timetable} onBack={() => setView("original")} />;
   }
 
-  /* ===== ORIGINAL TIMETABLE ===== */
   return (
     <div style={{ padding: "20px" }}>
 
