@@ -98,13 +98,12 @@ export default function Timetable() {
   /* ===== ORIGINAL TIMETABLE ===== */
   return (
     <div style={{ padding: "20px" }}>
-      {/* Logo */}
+
       <div style={{ display: "flex", alignItems: "center", gap: "15px", marginBottom: "20px" }}>
         <img src="/logo.png" alt="School Logo" style={{ width: "80px", height: "auto" }} />
         <h2 style={{ margin: 0 }}>School Timetable</h2>
       </div>
 
-      {/* Buttons on the LEFT */}
       <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "20px", alignItems: "flex-start" }}>
         <button onClick={exportExcel} style={{ padding: "10px 15px" }}>Download Excel</button>
         <button onClick={exportBlankExcel} style={{ padding: "10px 15px" }}>Download Blank Timetable (Excel)</button>
@@ -112,7 +111,6 @@ export default function Timetable() {
         <button onClick={() => setView("duplicate")} style={{ padding: "10px 15px" }}>Open teacher Time-table</button>
       </div>
 
-      {/* Timetable Table */}
       <div style={{ overflowX: "auto" }}>
         <table style={{ borderCollapse: "collapse", width: "max-content" }}>
           <thead>

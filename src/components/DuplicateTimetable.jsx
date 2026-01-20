@@ -15,7 +15,7 @@ export default function DuplicateTimetable({ timetable, onBack }) {
   const [interactiveTable, setInteractiveTable] = useState(
     periods.map(p => {
       const row = { period: p, time: "" };
-      days.forEach(day => row[day] = ""); // placeholder for editable subject
+      days.forEach(day => row[day] = ""); 
       return row;
     })
   );
@@ -28,7 +28,6 @@ export default function DuplicateTimetable({ timetable, onBack }) {
     });
   };
 
-  /* ===== EXPORT FUNCTIONS ===== */
   const exportExcel = () => {
     const rows = [];
     interactiveTable.forEach(row => {
@@ -63,7 +62,6 @@ export default function DuplicateTimetable({ timetable, onBack }) {
   const exportWord = async () => {
     const tableRows = [];
 
-    // Header
     const headerCells = [
       new TableCell({ children: [new Paragraph({ text: "Period", bold: true })], width: { size: 1000, type: WidthType.DXA } }),
       new TableCell({ children: [new Paragraph({ text: "Time", bold: true })], width: { size: 1500, type: WidthType.DXA } }),
@@ -110,14 +108,13 @@ export default function DuplicateTimetable({ timetable, onBack }) {
 
   return (
     <div style={{ padding: "20px" }}>
-      {/* Buttons on LEFT */}
+
       <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "20px", alignItems: "flex-start" }}>
         <button onClick={exportExcel} style={{ padding: "10px 15px" }}>Download Excel</button>
         <button onClick={exportWord} style={{ padding: "10px 15px" }}>Download Word</button>
         <button onClick={onBack} style={{ padding: "10px 15px" }}>Back to School Time-table</button>
       </div>
 
-      {/* Interactive Table */}
       <div style={{ overflowX: "auto" }}>
         <table style={{ borderCollapse: "collapse", width: "max-content", minWidth: "800px" }}>
           <thead>
